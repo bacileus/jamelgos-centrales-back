@@ -6,7 +6,7 @@ from flask_pymongo import PyMongo
 from pymongo import MongoClient
 import hashlib
 
-app = flask.Flask(name)
+app = flask.Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
