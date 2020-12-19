@@ -1,21 +1,37 @@
 
+import flask
+from flask import request
 import json
-from flask import Flask, jsonify, request, send_file, render_template, redirect
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 import hashlib
 
+app = flask.Flask(name)
 
 
-app = Flask(__name__)
+@app.route('/', methods=['GET'])
+def home():
+    return "Aqui no hay nada carnal"
+
+
 
 client = MongoClient("mongodb+srv://admin:Jamau@hackathon.0lxfu.mongodb.net/<dbname>?retryWrites=true&w=majority")
 dbInfected= client.get_database('COVID-Infected')
 infectados = dbInfected.Infected
 
-#funcion para añadir MAC Infectao
-@app.route('/registrarInfectado',methods=['POST'])
-def registrarInfectado():
+
+
+@app.route('/usuarios',methods=['GET'])
+def getUser():
+    mac = "AAA"
+    existsOne = infectados.Mac.find({"MAC":Mac})
+    myvar = "the answer is {}".format(existsOne)
+    return myvar
+
+
+
+@app.route('/usuarios',methods=['POST'])
+def registrarUsuario():
     NewInfected = request.get_json()
     Mac = NewInfected.get("MAC")
     existsOne = infectados.Mac.find({"MAC":Mac})
@@ -29,15 +45,3 @@ def registrarInfectado():
     else:
         response = {"response":"exists"}
         return jsonify(response),406
-
-
-@app.route('/usuarios',methods=['GET'])
-def getUser():
-    mac = "AAA"
-    existsOne = infectados.Mac.find({"MAC":Mac})
-    myvar = "the answer is {}".format(existsOne)
-    return myvar
-
-#funcion para devolver toda la tabla
-
-#print (infectados.find_one({"MAC": "AAAAA"}))
