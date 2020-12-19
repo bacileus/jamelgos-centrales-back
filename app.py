@@ -26,6 +26,7 @@ def getUser():
     Mac = "AAAAA"
     existsOne = infectados.Mac.find({"MAC":Mac})
     myvar = "the answer is {}".format(existsOne)
+    print(existsOne)
     return myvar
 
 
