@@ -23,7 +23,7 @@ infectados = dbInfected.Infected
 
 @app.route('/usuarios',methods=['GET'])
 def getUser():
-    Mac = "AAA"
+    Mac = "AAAAA"
     existsOne = infectados.Mac.find({"MAC":Mac})
     myvar = "the answer is {}".format(existsOne)
     return myvar
