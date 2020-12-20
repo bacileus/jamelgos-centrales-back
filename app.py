@@ -22,11 +22,11 @@ def home():
 
 @app.route('/users',methods=['GET'])
 def getUsers():
-    all_users = [{'MAC': user.MAC, 'noticedTime': user.noticedTime} for user in colInfected.find()]
+    #all_users = [{"MAC": user.MAC, "noticedTime": user.noticedTime} for user in colInfected.find()]
     #macs = "macs: "
     #for mac in colInfected.find():
     #    macs += " // " + str(mac)
-    return jsonify(all_users)
+    return jsonify(colInfected.find().toArray())
 
 
 @app.route('/users',methods=['POST'])
