@@ -33,7 +33,7 @@ def getUsers():
 
 @app.route('/users',methods=['POST'])
 def postUser():
-    MAC = request.args.get('mac')
+    MAC = request.get_json().get("MAC")
     usuerInser = { "MAC": MAC, "noticedTime": datetime.now() }
     colInfected.insert_one(usuerInser)
     response = {"response":"registered"}
