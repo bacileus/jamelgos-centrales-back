@@ -34,7 +34,7 @@ def getUsers():
 @app.route('/users',methods=['POST'])
 def postUser():
     MAC = request.get_json().get("MAC")
-    usuerInser = { "MAC": MAC, "noticedTime": datetime.now() }
+    usuerInser = { "_id": MAC, "noticedTime": datetime.now() }
     colInfected.insert_one(usuerInser)
     response = {"response":"registered"}
     return flask.jsonify(response),201
