@@ -26,7 +26,7 @@ def getUsers():
     #macs = "macs: "
     #for mac in colInfected.find():
     #    macs += " // " + str(mac)
-    return jsonify(colInfected.find().toArray())
+    return flask.jsonify(colInfected.find().toArray())
 
 
 @app.route('/users',methods=['POST'])
