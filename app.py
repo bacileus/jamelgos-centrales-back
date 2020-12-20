@@ -3,8 +3,9 @@ from flask import request
 import json
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
-from bson.json_util import dumps, loads
+from bson.json_util import dumps
 import hashlib
+from datetime import datetime
 
 app = flask.Flask(__name__)
 
@@ -33,7 +34,7 @@ def getUsers():
 @app.route('/users',methods=['POST'])
 def postUser():
     MAC = request.args.get('MAC')
-    usuerInser = { "MAC": MAC }
+    usuerInser = { "MAC": MAC, "noticedTime": datetime.now() }
     colInfected.insert_one(usuerInser)
     response = {"response":"registered"}
     return jsonify(response),201
