@@ -3,6 +3,7 @@ from flask import request
 import json
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
+from bson.json_util import dumps, loads
 import hashlib
 
 app = flask.Flask(__name__)
@@ -26,7 +27,9 @@ def getUsers():
     #macs = "macs: "
     #for mac in colInfected.find():
     #    macs += " // " + str(mac)
-    return flask.jsonify(colInfected.find().toArray())
+    cursor = colInfected.find()
+    list_cur = list(cursor)
+    return flask.jsonify(dumps(list_cur))
 
 
 @app.route('/users',methods=['POST'])
