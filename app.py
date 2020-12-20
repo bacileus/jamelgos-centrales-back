@@ -37,4 +37,4 @@ def postUser():
     usuerInser = { "MAC": MAC, "noticedTime": datetime.now() }
     colInfected.insert_one(usuerInser)
     response = {"response":"registered"}
-    return jsonify(response),201
+    return flask.jsonify(response),201
