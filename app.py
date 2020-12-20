@@ -28,10 +28,8 @@ def getUsers():
     #for mac in colInfected.find():
     #    macs += " // " + str(mac)
     cursor = colInfected.find()
-    json_results = []
-    for result in cursor:
-        json_results.append(result)
-    return flask.jsonify(json_results)
+    list_cur = list(cursor)
+    return flask.jsonify(dumps(list_cur, indent = 2))
 
 
 @app.route('/users',methods=['POST'])
